@@ -2,6 +2,9 @@
 
 import os, sys, platform;
 
+if len(sys.argv) < 2:
+	print("Usage:\r\n\tcompiler <file.sssc> [-c [-e]|-e [-c]|-ce|-ec]");
+
 def typeof(word):
 	return word[:3];
 
@@ -76,7 +79,7 @@ def __main__():
 	nfile.write(out);
 	nfile.close();
 	if len(sys.argv) >= 3 and sys.argv[2] != "-c" and sys.argv[2] != "-ec" and sys.argv[2] != "-ce" and sys.argv[3] != "-c":
-		cyn = input("Now I would like to compile the file with GCC (Install MinGW if you're on Windows), can I ? [Y/n]: ");
+		cyn = input("Would you like to compile the file with GCC (Install MinGW if you're on Windows) ? [Y/n]: ");
 		if cyn.lower() != "n":
 			if platform.system() == "Windows":
 				os.system("gcc "+oname+" -o "+oname[:-2]+".exe");
