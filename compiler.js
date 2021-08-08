@@ -63,7 +63,7 @@ function gen(pcode)
 				{
 					for(var j = 0;j < layer;j++)
 						output += "\t";
-					output += "return " + pcode[i].toString().concat(";");
+					output += "return " + getInt(pcode[i]).toString().concat(";\r\n");
 				};
 			break;
 		};
@@ -113,11 +113,12 @@ function parseAndLex(code)
 						tokens.push("str::"+wroteString+"\"");
 						wroteString = "";
 					};
+					token = "";
 				};
 			break;
 			default:
 				if(token.match(/\d/) && !isNaN(Number(token)))
-					tokens.push("int::"+token.match(/\d/)[0]);
+					tokens.push("int::"+token.match(/\d+/)[0]);
 		};
 		if(readingString !== 0)
 		{
